@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "28724025625",
+    "project_id": "pezesha-fb1a9",
+    "storage_bucket": "pezesha-fb1a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28724025625:android:20e9d271c55b688d8c8d88",
+        "android_client_info": {
+          "package_name": "com.example.pezeshainterview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28724025625-eil2ma4h5m87lbd72mpecg881dn1408i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHbXiTjrNeoKSg42d5QPUMQ6-5bV1BoRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28724025625-eil2ma4h5m87lbd72mpecg881dn1408i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
