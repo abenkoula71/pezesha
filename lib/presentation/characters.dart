@@ -20,14 +20,14 @@ class _MavelCharactersState extends State<MavelCharacters> {
 
   late String name;
   late String imageUrl;
-  List<dynamic> charactersList = [];
   var charctersData;
   late bool isLoading = false;
 
   Future getMarvelCharacters() async {
-    charctersData = await apiProvider.getMarvelCharacters();
+    final marvelData = charctersData = await apiProvider.getMarvelCharacters();
     setState(() {
-      charactersList = charctersData['data']['results']['items'];
+      isLoading = true;
+      charctersData = marvelData;
     });
   }
 
@@ -52,12 +52,13 @@ class _MavelCharactersState extends State<MavelCharacters> {
                   shrinkWrap: true,
                   maxCrossAxisExtent: 400,
                   children: [
-                    for (int i = 0; i < charactersList.length; i++)
+                    for (int i = 0; i < charctersData.length; i++)
                       ListViewItems(
-                        author: charctersData['data']['results']['items'][i]
-                            ['name'],
-                        imageUrl: charctersData['data']['results']['items'][i]
-                            ['resourceURI'],
+                        author: charctersData['data']['results'][i]['name'],
+                        description: charctersData['data']['results'][i]
+                            ['description'],
+                        imageUrl: charctersData['data']['results'][i]
+                            ['thumbnail']['path'],
                       )
                   ]),
             ),
@@ -78,11 +79,14 @@ class _MavelCharactersState extends State<MavelCharacters> {
 }
 
 class ListViewItems extends StatelessWidget {
-  const ListViewItems({required this.imageUrl, required this.author});
+  const ListViewItems(
+      {required this.description,
+      required this.author,
+      required this.imageUrl});
 
-  final String imageUrl;
+  final String description;
   final String author;
-
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -92,9 +96,16 @@ class ListViewItems extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
+            Text(
+              description,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 10.0,
+              ),
+            ),
             Image.network(
-              imageUrl,
-              height: 200,
+              imageUrl + '.jpg',
+              height: 500,
             ),
             SizedBox(
               height: 16,
@@ -107,11 +118,22 @@ class ListViewItems extends StatelessWidget {
                 color: Colors.grey[600],
                 child: Column(
                   children: [
-                    Text(
-                      author,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10.0,
+                    Expanded(
+                      child: Text(
+                        author,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        description,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.0,
+                        ),
                       ),
                     ),
                   ],

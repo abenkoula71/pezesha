@@ -17,8 +17,8 @@ class ApiProvider {
   }
 
   Future getMarvelCharacters() async {
-    http.Response response = await http.get(
-        Uri.parse('$url?&ts=$ts&limit=20&apikey=$publickey&hash=${hash()}'));
+    http.Response response = await http.get(Uri.parse(
+        '$url?&ts=$ts&limit=20&offset=0&apikey=$publickey&hash=${hash()}'));
 
     if (response.statusCode == 200) {
       String data = response.body;
