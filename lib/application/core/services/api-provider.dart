@@ -12,13 +12,16 @@ const baseUrl = 'https://gateway.marvel.com';
 final url = baseUrl + "/v1/public/characters";
 
 class ApiProvider {
+  final limit = 20;
+  var offset = 0;
+
   hash() {
     return generateMd5("$ts$privatekey$publickey");
   }
 
   Future getMarvelCharacters() async {
     http.Response response = await http.get(Uri.parse(
-        '$url?&ts=$ts&limit=20&offset=0&apikey=$publickey&hash=${hash()}'));
+        '$url?&ts=$ts&offset=$offset&limit=$limit&apikey=$publickey&hash=${hash()}'));
 
     if (response.statusCode == 200) {
       String data = response.body;

@@ -59,6 +59,8 @@ class _MavelCharactersState extends State<MavelCharacters> {
                             ['description'],
                         imageUrl: charctersData['data']['results'][i]
                             ['thumbnail']['path'],
+                        extension: charctersData['data']['results'][i]
+                            ['thumbnail']['extension'],
                       )
                   ]),
             ),
@@ -82,11 +84,13 @@ class ListViewItems extends StatelessWidget {
   const ListViewItems(
       {required this.description,
       required this.author,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.extension});
 
   final String description;
   final String author;
   final String imageUrl;
+  final String extension;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -104,7 +108,7 @@ class ListViewItems extends StatelessWidget {
               ),
             ),
             Image.network(
-              imageUrl + '.jpg',
+              imageUrl + '.' + extension,
               height: 500,
             ),
             SizedBox(
